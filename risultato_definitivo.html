@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+ <html lang="it">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risultato delle Tue Scelte</title>
+  <style>
+  body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px;
+  background-color: #222; /* Sfondo grigio molto scuro */
+  color: #f0f0f0; /* Testo grigio chiaro */
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra orizzontalmente gli elementi */
+  }
+
+  h1 {
+  color: #7ac1ff; /* Blu più vivace per il titolo */
+  font-family: 'Georgia', serif;
+  margin-bottom: 20px; /* Ridotto il margine inferiore */
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .top-text-container {
+  text-align: center;
+  margin-bottom: 20px;
+  }
+
+  .top-text-left {
+  display: block;
+  color: #aaff80; /* Verde più brillante per i sottotitoli */
+  font-family: 'Verdana', sans-serif;
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  }
+
+  .top-text-right {
+  display: block;
+  color: #ff8a80; /* Rosso più acceso per il conteggio */
+  font-weight: bold;
+  font-size: 1.5em;
+  }
+
+  .image-container {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Spazio tra la colonna di immagini e l'immagine centrale */
+  margin-bottom: 20px;
+  }
+
+  .small-images-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Spazio tra le immagini piccole */
+  max-height: 400px; /* Altezza massima della colonna per lo scrolling */
+  overflow-y: auto; /* Aggiunge la barra di scorrimento se necessario */
+  padding-right: 10px; /* Spazio per la barra di scorrimento */
+  border-right: 1px solid #444; /* Separatore visivo */
+  }
+
+  .small-image {
+  width: 80px;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  }
+
+  .small-image:hover {
+  transform: scale(1.1);
+  }
+
+  .main-image-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  #main-image {
+  max-width: 600px;
+  max-height: 400px;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+  }
+
+  .button-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  }
+
+  .button-container {
+  display: flex;
+  gap: 20px; /* Spazio tra i bottoni */
+  justify-content: center; /* Centra i bottoni orizzontalmente */
+  margin-top: 20px;
+  }
+
+  .button {
+  display: inline-block;
+  padding: 12px 24px;
+  text-decoration: none;
+  background-color: #66a3ff; /* Blu più vivace per il bottone */
+  color: #222; /* Testo bottone grigio scuro */
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1em;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  background-color: #508ddf; /* Leggermente più scuro all'hover */
+  }
+
+  .button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .top-right-image {
+  position: absolute;
+  top: 10px; /* Leggermente più in basso */
+  right: 10px;
+  width: 80px; /* Ridotta la larghezza */
+  height: auto;
+  z-index: 10;
+  }
+
+  /* Nascondi gli elementi originali delle tabelle e delle liste */
+  .container, #tenute_tabella, #oscurate_tabella {
+  display: none !important;
+  }
+  </style>
+ </head>
+ <body>
+  <img src="logo.jpg" alt="Schermo Nero Logo" class="top-right-image">
+  <h1>Risultato delle Tue Scelte</h1>
+
+  <div class="top-text-container">
+  <span class="top-text-left">Immagini Tenute:</span>
+  <span class="top-text-right" id="conteggio-tenute">0</span>
+  <span class="top-text-left">Immagini Oscurate:</span>
+  <span class="top-text-right" id="conteggio-oscurate">0</span>
+  </div>
+
+  <div class="image-container">
+  <div class="small-images-column" id="colonna-tenute">
+  </div>
+  <div class="main-image-container">
+  <img id="main-image" src="" alt="Immagine Selezionata">
+  </div>
+  <div class="button-navigation">
+  <button class="button" id="prev-btn">Precedente</button>
+  <button class="button" id="next-btn">Successivo</button>
+  </div>
+  <div class="small-images-column" id="colonna-oscurate">
+  </div>
+  </div>
+
+  <div class="button-container">
+  <a href="index.html" class="button">Torna alla home</a>
+  <a href="gioco.html" class="button">Cambieresti le tue scelte?</a>
+  </div>
+
+  <script>
+
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const oscurateSerializzato = urlParams.get('dati1');
+  const tenuteSerializzato = urlParams.get('dati2');
+  let tabella_tenute = document.getElementById('tenute_tabella');
+  let tabella_oscurate = document.getElementById('oscurate_tabella');
+
+  let vettoreOscurate = null;
+  let vettoreTenute = null;
+
+  if (oscurateSerializzato) {
+  try {
+  vettoreOscurate = JSON.parse(oscurateSerializzato); // vettore ricevuto
+  } catch (error) {
+  console.error("Errore nella deserializzazione del vettore 1:", error);
+  }
+  } else {
+  console.log("Nessun dato vettore 1 ricevuto nell'URL.");
+  }
+
+  if (tenuteSerializzato) {
+  try {
+  vettoreTenute = JSON.parse(tenuteSerializzato); // vettore ricevuto
+  } catch (error) {
+  console.error("Errore nella deserializzazione del vettore 2:", error);
+  }
+  } else {
+  console.log("Nessun dato vettore 2 ricevuto nell'URL.");
+  }
+
+  let campo_tenute = document.getElementById('conteggio-tenute');
+  let campo_oscurate = document.getElementById('conteggio-oscurate');
+
+  campo_tenute.textContent = vettoreTenute ? vettoreTenute.length : 0;
+  campo_oscurate.textContent = vettoreOscurate ? vettoreOscurate.length : 0;
+
+  const colonnaTenute = document.getElementById('colonna-tenute');
+  const colonnaOscurate = document.getElementById('colonna-oscurate');
+  const mainImage = document.getElementById('main-image');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  let currentIndexTenute = 0;
+  let currentIndexOscurate = 0;
+
+  function showImage(index, images, targetElement) {
+  if (images && images.length > 0) {
+  const safeIndex = index % images.length;
+  targetElement.src = images[safeIndex];
+  } else {
+  targetElement.src = ''; // Nessuna immagine da mostrare
+  }
+  }
+
+  function renderSmallImages(images, targetColumn, isTenuta = true) {
+  if (images) {
+  images.forEach((url, index) => {
+  const img = document.createElement('img');
+  img.src = url;
+  img.classList.add('small-image');
+  img.addEventListener('click', () => {
+  if (isTenuta) {
+  currentIndexTenute = index;
+  showImage(currentIndexTenute, vettoreTenute, mainImage);
+  } else {
+  currentIndexOscurate = index;
+  showImage(currentIndexOscurate, vettoreOscurate, mainImage);
+  }
+  });
+  targetColumn.appendChild(img);
+  });
+  }
+  }
+
+  if (vettoreTenute && vettoreTenute.length > 0) {
+  renderSmallImages(vettoreTenute, colonnaTenute, true);
+  showImage(currentIndexTenute, vettoreTenute, mainImage); // Mostra la prima immagine tenuta
+  } else {
+  mainImage.alt = "Nessuna immagine tenuta.";
+  mainImage.src = "";
+  }
+
+  if (vettoreOscurate && vettoreOscurate.length > 0) {
+  renderSmallImages(vettoreOscurate, colonnaOscurate, false);
+  }
+
+  prevBtn.addEventListener('click', () => {
+  if (vettoreTenute && vettoreTenute.length > 0) {
+  currentIndexTenute = (currentIndexTenute - 1 + vettoreTenute.length) % vettoreTenute.length;
+  showImage(currentIndexTenute, vettoreTenute, mainImage);
+  } else if (vettoreOscurate && vettoreOscurate.length > 0 && vettoreTenute.length === 0) {
+  currentIndexOscurate = (currentIndexOscurate - 1 + vettoreOscurate.length) % vettoreOscurate.length;
+  showImage(currentIndexOscurate, vettoreOscurate, mainImage);
+  }
+  });
+
+  nextBtn.addEventListener('click', () => {
+  if (vettoreTenute && vettoreTenute.length > 0) {
+  currentIndexTenute = (currentIndexTenute + 1) % vettoreTenute.length;
+  showImage(currentIndexTenute, vettoreTenute, mainImage);
+  } else if (vettoreOscurate && vettoreOscurate.length > 0 && vettoreTenute.length === 0) {
+  currentIndexOscurate = (currentIndexOscurate + 1) % vettoreOscurate.length;
+  showImage(currentIndexOscurate, vettoreOscurate, mainImage);
+  }
+  });
+
+  // Se ci sono solo immagini oscurate, mostra la prima
+  if (vettoreTenute && vettoreTenute.length === 0 && vettoreOscurate && vettoreOscurate.length > 0) {
+  showImage(currentIndexOscurate, vettoreOscurate, mainImage);
+  }
+
+  </script>
+ </body>
+ </html>

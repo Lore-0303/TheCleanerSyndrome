@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cleaner Syndrome</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            color: #fff;
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            overflow: hidden; /* Impedisce la comparsa di barre di scorrimento */
+            opacity: 0; /* Inizialmente la pagina è invisibile */
+            transition: opacity 1s ease-in-out; /* Transizione per l'effetto di comparsa */
+            box-sizing: border-box; /* Assicura che il padding non influenzi la larghezza totale */
+        }
+
+        body.loaded {
+            opacity: 1; /* Rende la pagina visibile dopo il caricamento */
+        }
+
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: -30px;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1; /* Pone il video dietro gli altri elementi */
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Sovrapposizione scura per migliorare la leggibilità del testo */
+            z-index: -1;
+        }
+
+        header {
+            background-color: transparent; /* Rende lo sfondo dell'header trasparente */
+            color: #fff;
+            padding: 15px 20px; /* Ridotto il padding verticale per schermi piccoli */
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Spazia il logo e potenziali elementi di navigazione */
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Bordo inferiore leggero */
+        }
+
+        .logo {
+            display: flex; /* Rende gli elementi interni (immagine e testo) in linea */
+            align-items: center; /* Allinea verticalmente gli elementi al centro */
+        }
+
+        .logo-image {
+            width: 40px; /* Ridotto la dimensione del logo per schermi piccoli */
+            height: 40px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .logo-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1em; /* Ridotto la dimensione del testo del logo per schermi piccoli */
+        }
+
+        .content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.2em; /* Ridotto la dimensione del sottotitolo per schermi piccoli */
+            margin-top: 60px; /* Ridotto il margine superiore per schermi piccoli */
+            margin-bottom: 10px; /* Ridotto il margine inferiore per schermi piccoli */
+            color: #ccc;
+        }
+
+        .title-container {
+            opacity: 0;
+            transition: opacity 1s ease-in-out; /* Effetto di transizione per l'opacità */
+        }
+
+        .title {
+            font-size: 3em; /* Ridotto la dimensione del titolo per schermi piccoli */
+            font-weight: bold;
+            margin-bottom: 40px; /* Ridotto il margine inferiore per schermi piccoli */
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                         -1px -1px 0 #222,
+                         1px -1px 0 #222,
+                         -1px 1px 0 #222,
+                         1px 1px 0 #222;
+            padding-left: 3px;
+        }
+
+        .start-button {
+            background-color: #8b0000;
+            color: white;
+            border: 2px solid white; /* Dark Red */
+            padding: 12px 25px; /* Ridotto il padding per schermi piccoli */
+            font-size: 1.2em; /* Ridotto la dimensione del font per schermi piccoli */
+            cursor: pointer;
+            border-radius: 30px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .start-button:hover {
+            background-color: rgba(128, 128, 128, 0.351);
+        }
+
+        footer {
+            background-color: transparent; /* Rende lo sfondo del footer trasparente */
+            color: #555;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Bordo superiore leggero */
+            font-size: 0.7em; /* Ridotto la dimensione del font per schermi piccoli */
+        }
+
+        /* Media query per schermi con larghezza massima di 768px (tablet) */
+        @media (max-width: 768px) {
+            body {
+                background-color: #222;
+                background-image: none;
+            }
+             #background-video{
+                display: none;
+            }
+            .subtitle {
+                font-size: 1.4em;
+                margin-top: 70px;
+                margin-bottom: 5px;
+            }
+
+            .title {
+                font-size: 3.5em;
+                margin-bottom: 50px;
+            }
+
+            .start-button {
+                font-size: 1.4em;
+                padding: 14px 28px;
+            }
+
+            .logo-image {
+                width: 45px;
+                height: 45px;
+                margin-right: 12px;
+            }
+
+            .logo-text {
+                font-size: 1.1em;
+            }
+        }
+
+        /* Media query per schermi con larghezza massima di 480px (mobile) */
+        @media (max-width: 480px) {
+            body {
+                background-color: #222;
+                background-image: none;
+            }
+            #background-video{
+                display: none;
+            }
+            .subtitle {
+                font-size: 1em;
+                margin-top: 50px;
+                margin-bottom: 3px;
+            }
+
+            .title {
+                font-size: 2.5em;
+                margin-bottom: 30px;
+            }
+
+            .start-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+
+            .logo-image {
+                width: 35px;
+                height: 35px;
+                margin-right: 8px;
+            }
+
+            .logo-text {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body class="loading">
+    <video autoplay loop muted id="background-video">
+        <source src="video_sfondo_index.mp4" type="video/mp4">
+        Il tuo browser non supporta i video HTML5.
+    </video>
+    <div class="video-overlay"></div>
+    <header>
+        <div class="logo">
+            <div class="logo-image">
+                <img src="logo.avif" alt="Logo Cleaner">
+            </div>
+            <div class="logo-text">The Cleaner Syndrome</div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="subtitle">You are the cleaner now</div>
+        <div class="title-container">
+            <h1 class="title" id="mainTitle"></h1>
+        </div>
+        <a href="gioco.html"><button class="start-button">START</button></a>
+    </div>
+
+    <footer>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+        });
+
+        const titleElement = document.getElementById('mainTitle');
+        const titleContainer = document.querySelector('.title-container');
+        const fullText = "The Cleaner Syndrome";
+        let currentIndex = 0;
+
+        setTimeout(() => {
+            const intervalId = setInterval(() => {
+                if (currentIndex < fullText.length) {
+                    titleElement.textContent = fullText.substring(0, currentIndex + 1);
+                    currentIndex++;
+                } else {
+                    clearInterval(intervalId);
+                    titleContainer.style.opacity = 1; // Mostra il titolo completo con transizione
+                }
+            }, 100); // Intervallo di 100ms per far comparire ogni carattere
+            titleContainer.style.opacity = 1; // Inizia la transizione di opacità
+        }, 1000); // Ritardo di 1 secondo prima di iniziare l'animazione
+    </script>
+</body>
+</html>

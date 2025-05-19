@@ -1,0 +1,170 @@
+header {
+    background-color: black; /* Sfondo nero come nell'immagine */
+    color: white; /* Testo bianco come nell'immagine */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    position: fixed; /* Mantiene l'header in alto durante lo scrolling */
+    top: 0;
+    left: 0;
+    z-index: 10;
+    justify-content: flex-start; /* Allinea il logo a sinistra */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+}
+
+.logo {
+    display: flex; /* Rende gli elementi interni (immagine e testo) in linea */
+    align-items: center; /* Allinea verticalmente gli elementi al centro */
+}
+
+.logo-image {
+    width: 40px; /* Diminuisco la larghezza del logo */
+    height: 40px; /* Diminuisco l'altezza del logo */
+    border: 2px solid #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.logo-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.logo-text {
+    font-size: 1em; /* Diminuisco la dimensione del testo del logo */
+}
+
+body {
+    font-family: 'Exo 2', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente il contenuto principale */
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: black; /* Sfondo nero come nell'immagine */
+    color: white; /* Testo bianco come nell'immagine */
+}
+
+.Schermo {
+    background-color: transparent; /* Sfondo trasparente per il contenitore principale */
+    border-radius: 0; /* Rimosso il bordo arrotondato */
+    box-shadow: none; /* Rimossa l'ombra */
+    padding: 10px; /* Ridotto il padding */
+    width: 97%; /* Ottimizzato per schermi più piccoli */
+    max-width: 800px; /* Mantiene una larghezza massima ragionevole */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 900px; /* Rimossa l'altezza massima */
+    margin-top: 60px; /* Adatto lo spazio per l'header ridotto */
+}
+
+.top-bar {
+    display: none; /* Nascosto la top-bar */
+}
+
+.image-container-logo {
+    display: none; /* Nascosto il logo nella top-bar */
+}
+
+.app-title {
+    display: none; /* Nascosto il titolo dell'app */
+}
+
+.image-container {
+    position: relative;
+    width: 78%; /* Ulteriore riduzione della larghezza predefinita */
+    height: auto; /* L'altezza si adatta proporzionalmente */
+    max-width: 700px; /* Larghezza massima ridotta per immagini più piccole */
+    max-height: 900px; /* Altezza massima ridotta per immagini più piccole */
+    aspect-ratio: auto; /* Mantiene le proporzioni originali dell'immagine */
+    overflow: hidden;
+    border-radius: 5px; /* Leggero bordo arrotondato */
+    margin-bottom: 20px; /* Ridotto il margine inferiore */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Ombra più marcata */
+    border: none; /* Rimosso il bordo */
+    margin-top: 10px;
+    background-color: #333; /* Sfondo grigio scuro per l'immagine */
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Assicura che l'immagine sia completamente visibile mantenendo le proporzioni */
+    display: block;
+}
+
+.question {
+    display: none;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px; /* Ridotto il gap tra i bottoni */
+    width: auto; /* Larghezza automatica per adattarsi ai bottoni */
+    justify-content: center; /* Centra i bottoni */
+    padding: 0; /* Rimosso il padding */
+    background-color: transparent; /* Sfondo trasparente */
+    border-radius: 0;
+    margin-top: 0;
+
+}
+
+.choice-buttons {
+    display: flex;
+    gap: 40px; /* Ridotto il gap tra i bottoni di scelta */
+    width: auto;
+    justify-content: center;
+}
+.colore1 {
+    border: 2px solid #8b0000;
+}
+
+.colore2{
+    border: 2px solid #8b0000;
+}
+
+.choice-button {
+    background-color: #8b0000; /* Rosso scuro come nell'immagine */
+    color: black; /* Testo bianco come nell'immagine */
+    border: 2px solid black; /* Bordo dello stesso colore dello sfondo */
+    border-radius: 5px; /* Bordo leggermente arrotondato */
+    width: 140px; /* Larghezza dei bottoni ridotta */
+    height: 60px; /* Altezza dei bottoni ridotta */
+    font-size: 1.2em; /* Dimensione del testo dei bottoni ridotta */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    padding: 0;
+}
+
+.choice-button:hover {
+    background-color: black; /* Rosso più chiaro all'hover */
+    border-color: blue;
+    color: white;
+}
+.colore1:hover {
+    border: 1px solid blue;
+}
+
+.colore2:hover{
+    border: 1px solid blue;
+}
+
+h2 {
+    display: none;
+}
+
+/* Importa i font */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Exo+2:wght@400;700&display=swap');

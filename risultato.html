@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risultato delle Tue Scelte</title>
+     <style>
+               body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding-top: 10px;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        header {
+            background-color: transparent;
+            color: #fff;
+            padding-bottom: 10px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .logo-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1em;
+        }
+
+        .container {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 80%;
+            max-width: 400px;
+            flex-direction: row; /* Mantiene le colonne in riga */
+            align-items: center; /* Allinea verticalmente le colonne al centro */
+            justify-content: center; /* Centra orizzontalmente le colonne */
+        }
+
+        .column {
+            flex: 1;
+            background-color: #8b0000;
+            color: #fff;
+            border-radius: 15px;
+            padding: 15px 20px; /* Aumentato un po' il padding per leggibilità */
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            width: auto;
+            height: auto;
+            display: flex; /* Attiva flex layout per gli elementi interni */
+            flex-direction: row; /* Dispone gli elementi interni in riga */
+            align-items: center; /* Allinea verticalmente gli elementi interni */
+            justify-content: space-around; /* Distribuisce lo spazio tra gli elementi interni */
+        }
+
+        .column h2 {
+            font-size: 1em;
+            margin: 0; /* Rimuove margini predefiniti */
+        }
+
+        .column ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0; /* Rimuove margini predefiniti */
+            display: flex; /* Anche la ul sarà flex per allineare i li se necessario */
+            flex-wrap: wrap; /* Permette agli elementi di andare a capo se non c'è spazio */
+            justify-content: center; /* Centra gli elementi della lista */
+        }
+
+        .column ul li {
+            margin: 0 5px; /* Aggiunge un po' di margine tra gli elementi della lista */
+            font-size: 0.9em;
+        }
+
+        #tenute_tabella,
+        #oscurate_tabella {
+            width: 95%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #000;
+            overflow: auto;
+        }
+
+        #tenute_tabella th,
+        #tenute_tabella td,
+        #oscurate_tabella th,
+        #oscurate_tabella td {
+            padding: 8px;
+            text-align: center;
+            color: #eee;
+            font-size: 0.8em;
+        }
+
+        #tenute_tabella th,
+        #oscurate_tabella th {
+            background-color: #000;
+            font-weight: bold;
+        }
+
+        #tenute_tabella img,
+        #oscurate_tabella img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 5px auto;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        #tenute_tabella img:hover {
+            transform: scale(1.05);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        #oscurate_tabella img {
+            opacity: 0.6;
+            filter: blur(3px) contrast(150%);
+            transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+
+        #oscurate_tabella img:hover {
+            opacity: 1;
+            filter: none;
+            transform: scale(1.05);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 4px 10px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px;
+            text-decoration: none;
+            background-color: #4E4A46;
+            color: #222;
+            border-radius: 20px;
+            border: none;
+            font-size: 1em;
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+            background-color: #508ddf;
+        }
+
+        .button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .emoji {
+            max-width: 15px;
+            max-height: 15px;
+            vertical-align: middle;
+        }
+
+        .frase1, .frase2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #ddd;
+            font-size: 1em;
+        }
+
+        /* Media query per schermi con larghezza massima di 768px (tablet) */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Impila le colonne su schermi più piccoli */
+                align-items: center; /* Centra le colonne */
+                gap: 15px; /* Ridotto il gap tra le colonne impilate */
+            }
+            .numero_utente{
+                display: none;
+            }
+
+            .column {
+                width: 80%; /* Le colonne occupano una larghezza maggiore su tablet */
+                padding: 10px;
+                font-size: 1.1em;
+                flex-direction: row; /* Mantiene h2 e ul in riga */
+                justify-content: space-around;
+            }
+
+            .column h2 {
+                font-size: 1.2em;
+                flex-direction: column; /* Impila h2 e ul su schermi molto piccoli */
+                align-items: center;
+            }
+
+            ul {
+                justify-content: flex-start; /* Allinea gli elementi a sinistra su schermi più piccoli */
+            }
+
+            li {
+                margin: 0 10px;
+                font-size: 1em;
+            }
+
+            #tenute_tabella,
+            #oscurate_tabella {
+                width: 98%;
+            }
+
+            #tenute_tabella th,
+            #tenute_tabella td,
+            #oscurate_tabella th,
+            #oscurate_tabella td {
+                padding: 6px;
+                font-size: 0.9em;
+            }
+
+            .button {
+                font-size: 1.1em;
+                padding: 10px 22px;
+            }
+
+            .frase1, .frase2 {
+                font-size: 1.1em;
+            }
+        }
+
+        /* Media query per schermi con larghezza massima di 480px (mobile) */
+        @media (max-width: 480px) {
+            header {
+                padding: 10px 15px;
+            }
+
+            .logo-image {
+                width: 30px;
+                height: 30px;
+                margin-right: 8px;
+            }
+             .numero_utente{
+                display: none;
+            }
+            .logo-text {
+                font-size: 0.9em;
+            }
+
+            .column {
+                width: 95%; /* Le colonne occupano quasi tutta la larghezza su mobile */
+                padding: 10px;
+                font-size: 1em;
+                flex-direction: column; /* Impila h2 e ul su schermi molto piccoli */
+                align-items: center;
+            }
+
+            .column h2 {
+                font-size: 1em;
+                margin-bottom: 5px;
+                flex-direction: column; /* Impila h2 e ul su schermi molto piccoli */
+                align-items: center;
+            }
+
+            ul {
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            li {
+                margin: 5px;
+                font-size: 0.9em;
+            }
+
+            #tenute_tabella th,
+            #tenute_tabella td,
+            #oscurate_tabella th,
+            #oscurate_tabella td {
+                padding: 5px;
+                font-size: 0.8em;
+            }
+
+            .button {
+                font-size: 0.9em;
+                padding: 8px 18px;
+            }
+
+            .frase1, .frase2 {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-image">
+                <img src="logo.avif" alt="Logo Cleaner">
+            </div>
+            <div class="logo-text">The Cleaner Syndrome</div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="column">
+            <h2>Fold: n.<span></span></h2>
+            <ul id="tenute"></ul>
+        </div>
+        <div class="column">
+            <h2>Unfold: n.<span></span></h2>
+            <ul id="oscurate"></ul>
+        </div>
+    </div>
+    <div class="button-container">
+        <a href="index.html" class="button">Back <img src="https://img.icons8.com/?size=100&id=73&format=png&color=000000" alt="" class="emoji"></a>
+        <a href="lastpage.html" class="button">Close >></a>
+    </div>
+    <div class="frase1">
+        <h2>Cleaner <span class="numero_utente"></span> choose to keep:</h2>
+    </div>
+    <table id="tenute_tabella"></table>
+    <div class="frase2">
+        <h2>Cleaner <span class="numero_utente"></span> choose to hide:</h2>
+    </div>
+    <table id="oscurate_tabella"></table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const numeroUtenteSpans = document.querySelectorAll('.numero_utente');
+            let ultimoNumero = localStorage.getItem('ultimoNumeroUtente');
+            let numeroCorrente;
+
+            if (ultimoNumero === null) {
+                numeroCorrente = 37;
+            } else {
+                numeroCorrente = parseInt(ultimoNumero, 10) + 1;
+            }
+
+            numeroUtenteSpans.forEach(span => {
+                span.textContent = numeroCorrente;
+            });
+
+            localStorage.setItem('ultimoNumeroUtente', numeroCorrente);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const oscurateSerializzato = urlParams.get('dati1');
+            const tenuteSerializzato = urlParams.get('dati2');
+            let tabella_tenute = document.getElementById('tenute_tabella');
+            let tabella_oscurate = document.getElementById('oscurate_tabella');
+
+            let vettoreOscurate = null;
+            let vettoreTenute = null;
+
+            if (oscurateSerializzato) {
+                try {
+                    vettoreOscurate = JSON.parse(oscurateSerializzato);
+                } catch (error) {
+                    console.error("Errore nella deserializzazione del vettore 1:", error);
+                }
+            } else {
+                console.log("Nessun dato vettore 1 ricevuto nell'URL.");
+            }
+
+            if (tenuteSerializzato) {
+                try {
+                    vettoreTenute = JSON.parse(tenuteSerializzato);
+                } catch (error) {
+                    console.error("Errore nella deserializzazione del vettore 2:", error);
+                }
+            } else {
+                console.log("Nessun dato vettore 2 ricevuto nell'URL.");
+            }
+
+            let campo_tenute = document.getElementById('tenute');
+            let campo_oscurate = document.getElementById('oscurate');
+
+            campo_tenute.textContent = vettoreTenute ? vettoreTenute.length : 0;
+            campo_oscurate.textContent = vettoreOscurate ? vettoreOscurate.length : 0;
+
+            // Mostra le immagini tenute nella tabella
+            if (vettoreTenute && vettoreTenute.length > 0) {
+                let rowTenute;
+                vettoreTenute.forEach((url, index) => {
+                    if (index % 4 === 0) {
+                        rowTenute = tabella_tenute.insertRow();
+                    }
+                    let cell = rowTenute.insertCell();
+                    let img = document.createElement('img');
+                    img.src = url;
+                    cell.appendChild(img);
+                });
+            } else {
+                tabella_tenute.innerHTML = '<tr style="color:#eee;"><td>Nothing.</td></tr>';
+            }
+
+            // Mostra le immagini oscurate nella tabella e applica l'effetto
+            if (vettoreOscurate && vettoreOscurate.length > 0) {
+                let rowOscurate;
+                vettoreOscurate.forEach((url, index) => {
+                    if (index % 4 === 0) {
+                        rowOscurate = tabella_oscurate.insertRow();
+                    }
+                    let cell = rowOscurate.insertCell();
+                    let img = document.createElement('img');
+                    img.src = url;
+                    img.style.opacity = '0.6'; // Aumentata la visibilità iniziale
+                    img.style.filter = 'blur(5px) contrast(180%)'; // Mantenuto il blur e aumentato il contrasto
+
+                    img.addEventListener('mouseover', function() {
+                        this.style.opacity = '1';
+                        this.style.filter = 'none';
+                    });
+
+                    img.addEventListener('mouseout', function() {
+                        this.style.opacity = '0.5';
+                        this.style.filter = 'blur(5px) contrast(180%)';
+                    });
+
+                    cell.appendChild(img);
+                });
+            } else {
+                tabella_oscurate.innerHTML = '<tr style="color:#eee;"><td>Nothing.</td></tr>';
+            }
+        });
+    </script>
+</body>
+</html>

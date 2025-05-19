@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cleaner Syndrome</title>
+    
+    <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+    body {
+        font-family: 'Orbitron', sans-serif;
+        background-color: #000;
+        color: #fff;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Centra il contenuto verticalmente */
+        min-height: 100vh;
+        opacity: 0; /* Inizialmente la pagina è invisibile */
+        transition: opacity 1s ease-in-out; /* Transizione per l'effetto di comparsa */
+        padding: 20px; /* Aggiunto un po' di padding laterale per schermi piccoli */
+        box-sizing: border-box; /* Assicura che il padding non influenzi la larghezza */
+    }
+
+    body.loaded {
+        opacity: 1; /* Rende la pagina visibile dopo il caricamento */
+    }
+
+    header {
+        position: fixed; /* Mantiene l'header in alto anche durante lo scroll */
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8); /* Aggiunto un po' di trasparenza */
+        color: #fff;
+        padding: 15px; /* Ridotto il padding per schermi piccoli */
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Spazia il logo e (potenziali) navigazioni */
+        box-sizing: border-box;
+        border-bottom: 1px solid #222;
+        z-index: 100; /* Assicura che l'header sia sopra gli altri elementi */
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-image {
+        width: 40px; /* Ridotto la dimensione del logo per schermi piccoli */
+        height: 40px;
+        border: 2px solid #fff;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-right: 10px;
+    }
+
+    .logo-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .logo-text {
+        font-family: sans-serif;
+        font-size: 1em; /* Ridotto la dimensione del testo del logo per schermi piccoli */
+    }
+
+    .main-content {
+        text-align: center;
+        padding-top: 80px; /* Aggiunto padding per evitare che il contenuto sia coperto dall'header fisso */
+    }
+
+    .line-1, .line-2 {
+        font-size: 1.8em; /* Ridotto la dimensione del testo per schermi piccoli */
+        font-weight: normal;
+        margin-bottom: 10px; /* Ridotto il margine per schermi piccoli */
+        letter-spacing: 1px; /* Ridotta la spaziatura per schermi piccoli */
+        text-transform: uppercase;
+    }
+
+    .line-3-container {
+        opacity: 0;
+    }
+
+    .line-3 {
+        font-size: 3em; /* Ridotto la dimensione del testo "ORA" per schermi piccoli */
+        font-weight: bold;
+        letter-spacing: 3px; /* Ridotta la spaziatura per schermi piccoli */
+        background: linear-gradient(90deg, #c0c0c0 0%, #ff00ff 33%, #00ffff 66%, #c0c0c0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+    }
+
+    /* Media query per schermi con larghezza massima di 768px (tablet) */
+    @media (max-width: 768px) {
+        .line-1, .line-2 {
+            font-size: 2em;
+            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+        }
+
+        .line-3 {
+            font-size: 3.5em;
+            letter-spacing: 4px;
+        }
+    }
+
+    /* Media query per schermi con larghezza massima di 480px (mobile) */
+    @media (max-width: 480px) {
+        .logo-image {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+
+        .logo-text {
+            font-size: 0.9em;
+        }
+
+        .line-1, .line-2 {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .line-3 {
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+    }
+
+    </style>
+</head>
+<body class="loading">
+    <header>
+        <div class="logo">
+            <div class="logo-image">
+                <img src="logo.avif" alt="Logo Cleaner">
+            </div>
+            <div class="logo-text">The Cleaner Syndrome</div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="line-1">non essere solo un osservatore:</div>
+        <div class="line-2">entra nel sistema</div>
+        <div class="line-3-container">
+            <a href="cleaner_page.html"><div class="line-3" id="oraText"></div></a>
+        </div>
+    </div>
+
+    <script>
+        // Aggiungi la classe 'loaded' al body quando il documento è completamente caricato
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+        });
+
+        const oraTextElement = document.getElementById('oraText');
+        const oraContainer = document.querySelector('.line-3-container');
+        const fullOraText = "ORA";
+        let oraIndex = 0;
+        const colors = ['#c0c0c0', '#ff00ff', '#00ffff'];
+        let colorIndex = 0;
+
+        setTimeout(() => {
+            const oraIntervalId = setInterval(() => {
+                if (oraIndex < fullOraText.length) {
+                    oraTextElement.textContent += fullOraText[oraIndex];
+                    oraIndex++;
+                } else {
+                    clearInterval(oraIntervalId);
+                }
+            }, 200);
+
+            const colorIntervalId = setInterval(() => {
+                oraTextElement.style.background = `linear-gradient(90deg, ${colors[colorIndex % colors.length]} 0%, ${colors[(colorIndex + 1) % colors.length]} 50%, ${colors[colorIndex % colors.length]} 100%)`;
+                oraTextElement.style.webkitBackgroundClip = 'text';
+                oraTextElement.style.webkitTextFillColor = 'transparent';
+                colorIndex++;
+            }, 80);
+
+            oraContainer.style.opacity = 1;
+        }, 1000);
+    </script>
+</body>
+</html>

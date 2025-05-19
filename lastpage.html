@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cleaner Syndrome</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            padding: 20px;
+            box-sizing: border-box;
+            background-clip: url(sfondo_lastpage.mp4);
+        }
+
+        .logo-text {
+            font-family: sans-serif;
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        header {
+            background-color: transparent;
+            color: #fff;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .logo-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.2em;
+        }
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding-top: 80px;
+            padding-bottom: 40px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .main-text-container {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .main-text-top {
+            font-size: 2.8em;
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .main-text-bottom {
+            font-size: 2.8em;
+            font-weight: bold;
+            line-height: 1.1;
+        }
+
+        .sub-text {
+            font-size: 0.9em;
+            line-height: 1.7;
+            max-width: 700px;
+            text-align: left;
+        }
+
+        /* Media Queries for Responsive Design */
+
+        /* Small screens (phones) */
+        @media (max-width: 576px) {
+            .main-text-top,
+            .main-text-bottom {
+                font-size: 2em;
+            }
+
+            .sub-text {
+                font-size: 0.8em;
+                text-align: center; /* Center sub-text on smaller screens */
+            }
+
+            .main-text-container {
+                max-width: 90%; /* Adjust max-width for smaller screens */
+            }
+        }
+
+        /* Medium screens (tablets) */
+        @media (min-width: 577px) and (max-width: 768px) {
+            .main-text-top,
+            .main-text-bottom {
+                font-size: 2.4em;
+            }
+
+            .main-text-container {
+                max-width: 80%;
+            }
+        }
+
+        /* Large screens (desktops) */
+        @media (min-width: 769px) and (max-width: 1200px) {
+            .main-text-container {
+                max-width: 70%;
+            }
+        }
+
+        /* Extra large screens (large desktops) */
+        @media (min-width: 1201px) {
+            .main-text-container {
+                max-width: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-image">
+                <img src="logo.avif" alt="Logo Cleaner">
+            </div>
+            <a href="index.html"><div class="logo-text">The Cleaner Syndrome</div></a>
+        </div>
+    </header>
+    <video autoplay loop muted id="background-video">
+        <source src="sfondo_lastpage.mp4" type="video/mp4">
+        Il tuo browser non supporta i video HTML5.
+    </video>
+    <div class="content-container">
+        <div class="main-text-container">
+            <div class="main-text-top">Hai fatto la stessa cosa che fanno in molti,</div>
+            <div class="main-text-bottom">ma tu <span style="color: #f00;">ORA</span> ne sei consapevole.</div>
+        </div>
+
+        <div class="sub-text">
+            Il <strong>Content Moderator</strong> è un operatore specializzato nella supervisione dei contenuti digitali generati dagli utenti, con il compito di assicurare che testi, immagini e video pubblicati sulle piattaforme online rispettino le normative vigenti e le policy interne in materia di sicurezza, etica e decoro. Tuttavia, l'adozione crescente di criteri di moderazione automatizzata e l'ampliamento delle definizioni di "contenuto sensibile" stanno portando alla rimozione sistematica anche di materiali perfettamente legittimi - incluse opere artistiche, contenuti culturali e immagini di nudo non pornografico - che, pur privi di elementi offensivi o lesivi, vengono censurati per eccesso di prudenza o a causa di interpretazioni algoritmiche distorte, sollevando interrogativi sostanziali sul bilanciamento tra la tutela della comunità e il rispetto del diritto alla libera espressione e alla rappresentazione del corpo umano.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
