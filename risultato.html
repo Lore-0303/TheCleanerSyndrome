@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Risultato delle Tue Scelte</title>
-     <style>
-               body {
+    <style>
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #000;
             color: #fff;
@@ -66,9 +66,9 @@
             overflow: hidden;
             width: 80%;
             max-width: 400px;
-            flex-direction: row; /* Mantiene le colonne in riga */
-            align-items: center; /* Allinea verticalmente le colonne al centro */
-            justify-content: center; /* Centra orizzontalmente le colonne */
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
         }
 
         .column {
@@ -76,34 +76,34 @@
             background-color: #8b0000;
             color: #fff;
             border-radius: 15px;
-            padding: 15px 20px; /* Aumentato un po' il padding per leggibilità */
+            padding: 15px 20px;
             font-size: 1.2em;
             font-weight: bold;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
             width: auto;
             height: auto;
-            display: flex; /* Attiva flex layout per gli elementi interni */
-            flex-direction: row; /* Dispone gli elementi interni in riga */
-            align-items: center; /* Allinea verticalmente gli elementi interni */
-            justify-content: space-around; /* Distribuisce lo spazio tra gli elementi interni */
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
         }
 
         .column h2 {
             font-size: 1em;
-            margin: 0; /* Rimuove margini predefiniti */
+            margin: 0;
         }
 
         .column ul {
             list-style-type: none;
             padding: 0;
-            margin: 0; /* Rimuove margini predefiniti */
-            display: flex; /* Anche la ul sarà flex per allineare i li se necessario */
-            flex-wrap: wrap; /* Permette agli elementi di andare a capo se non c'è spazio */
-            justify-content: center; /* Centra gli elementi della lista */
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .column ul li {
-            margin: 0 5px; /* Aggiunge un po' di margine tra gli elementi della lista */
+            margin: 0 5px;
             font-size: 0.9em;
         }
 
@@ -120,7 +120,7 @@
         #tenute_tabella td,
         #oscurate_tabella th,
         #oscurate_tabella td {
-            padding: 8px;
+            padding: 4px;
             text-align: center;
             color: #eee;
             font-size: 0.8em;
@@ -137,10 +137,11 @@
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 5px auto;
+            margin: 10px auto;
             border-radius: 5px;
             box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            width: 300px; /* Dimensione di default per desktop */
         }
 
         #tenute_tabella img:hover {
@@ -209,30 +210,30 @@
         /* Media query per schermi con larghezza massima di 768px (tablet) */
         @media (max-width: 768px) {
             .container {
-                flex-direction: column; /* Impila le colonne su schermi più piccoli */
-                align-items: center; /* Centra le colonne */
-                gap: 15px; /* Ridotto il gap tra le colonne impilate */
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
             }
             .numero_utente{
                 display: none;
             }
 
             .column {
-                width: 80%; /* Le colonne occupano una larghezza maggiore su tablet */
+                width: 80%;
                 padding: 10px;
                 font-size: 1.1em;
-                flex-direction: row; /* Mantiene h2 e ul in riga */
+                flex-direction: row;
                 justify-content: space-around;
             }
 
             .column h2 {
                 font-size: 1.2em;
-                flex-direction: column; /* Impila h2 e ul su schermi molto piccoli */
+                flex-direction: column;
                 align-items: center;
             }
 
             ul {
-                justify-content: flex-start; /* Allinea gli elementi a sinistra su schermi più piccoli */
+                justify-content: flex-start;
             }
 
             li {
@@ -242,14 +243,14 @@
 
             #tenute_tabella,
             #oscurate_tabella {
-                width: 98%;
+                width: 100%;
             }
 
             #tenute_tabella th,
             #tenute_tabella td,
             #oscurate_tabella th,
             #oscurate_tabella td {
-                padding: 6px;
+                padding: 4px;
                 font-size: 0.9em;
             }
 
@@ -261,6 +262,12 @@
             .frase1, .frase2 {
                 font-size: 1.1em;
             }
+
+            /* Aumenta la dimensione delle immagini per tablet */
+            #tenute_tabella img,
+            #oscurate_tabella img {
+                width: 200px; /* Esempio: aumenta la larghezza per tablet */
+            }
         }
 
         /* Media query per schermi con larghezza massima di 480px (mobile) */
@@ -268,13 +275,12 @@
             header {
                 padding: 10px 15px;
             }
-
             .logo-image {
                 width: 30px;
                 height: 30px;
                 margin-right: 8px;
             }
-             .numero_utente{
+            .numero_utente{
                 display: none;
             }
             .logo-text {
@@ -282,17 +288,17 @@
             }
 
             .column {
-                width: 95%; /* Le colonne occupano quasi tutta la larghezza su mobile */
+                width: 95%;
                 padding: 10px;
                 font-size: 1em;
-                flex-direction: column; /* Impila h2 e ul su schermi molto piccoli */
+                flex-direction: column;
                 align-items: center;
             }
 
             .column h2 {
                 font-size: 1em;
-                margin-bottom: 5px;
-                flex-direction: column; /* Impila h2 e ul su schermi molto piccoli */
+                margin-bottom: 1px;
+                flex-direction: column;
                 align-items: center;
             }
 
@@ -311,7 +317,7 @@
             #oscurate_tabella th,
             #oscurate_tabella td {
                 padding: 5px;
-                font-size: 0.8em;
+                font-size: 0.9em;
             }
 
             .button {
@@ -321,6 +327,28 @@
 
             .frase1, .frase2 {
                 font-size: 0.9em;
+            }
+
+            /* Imposta le immagini a due per riga e aumenta la loro dimensione per mobile */
+            #tenute_tabella img,
+            #oscurate_tabella img {
+                width: 150px; /* Aumenta la larghezza per mobile */
+            }
+
+            /* Modifica la struttura della tabella per dispositivi mobili */
+            #tenute_tabella tr,
+            #oscurate_tabella tr {
+                display: flex;
+                flex-wrap: wrap; /* Permette alle celle di andare a capo */
+                justify-content: center; /* Centra le immagini orizzontalmente */
+                align-items: center;
+            }
+
+            #tenute_tabella td,
+            #oscurate_tabella td {
+                flex: 0 0 50%; /* Ogni cella occupa il 50% della larghezza del contenitore */
+                max-width: 50%;
+                box-sizing: border-box; /* Include padding e border nella larghezza */
             }
         }
     </style>
@@ -414,8 +442,15 @@
             if (vettoreTenute && vettoreTenute.length > 0) {
                 let rowTenute;
                 vettoreTenute.forEach((url, index) => {
-                    if (index % 4 === 0) {
-                        rowTenute = tabella_tenute.insertRow();
+                    // Crea una nuova riga ogni due immagini su mobile, altrimenti ogni 4
+                    if (window.innerWidth <= 480) { // Dispositivo mobile
+                        if (index % 2 === 0) {
+                            rowTenute = tabella_tenute.insertRow();
+                        }
+                    } else { // Desktop/Tablet
+                        if (index % 4 === 0) {
+                            rowTenute = tabella_tenute.insertRow();
+                        }
                     }
                     let cell = rowTenute.insertCell();
                     let img = document.createElement('img');
@@ -430,14 +465,21 @@
             if (vettoreOscurate && vettoreOscurate.length > 0) {
                 let rowOscurate;
                 vettoreOscurate.forEach((url, index) => {
-                    if (index % 4 === 0) {
-                        rowOscurate = tabella_oscurate.insertRow();
+                    // Crea una nuova riga ogni due immagini su mobile, altrimenti ogni 4
+                    if (window.innerWidth <= 480) { // Dispositivo mobile
+                        if (index % 2 === 0) {
+                            rowOscurate = tabella_oscurate.insertRow();
+                        }
+                    } else { // Desktop/Tablet
+                        if (index % 4 === 0) {
+                            rowOscurate = tabella_oscurate.insertRow();
+                        }
                     }
                     let cell = rowOscurate.insertCell();
                     let img = document.createElement('img');
                     img.src = url;
-                    img.style.opacity = '0.6'; // Aumentata la visibilità iniziale
-                    img.style.filter = 'blur(5px) contrast(180%)'; // Mantenuto il blur e aumentato il contrasto
+                    img.style.opacity = '0.6';
+                    img.style.filter = 'blur(5px) contrast(180%)';
 
                     img.addEventListener('mouseover', function() {
                         this.style.opacity = '1';
