@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Percentuali</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0; 
+            gap: 20px;
+        }
+
+        .container, .container-2,
+        .container-3, .container-4,
+        .container-5, .container-6,
+        .container-7, .container-8,
+        .container-9, .container-10,
+        .container-11, .container-12,
+        .container-13, .container-14,
+        .container-15, .container-16,
+        .container-17, .container-18,
+        .container-19, .container-20 {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            border-top: 2px solid #8b0000;
+            padding: 30px;
+            width: fit-content;
+            max-width: 90%; 
+        }
+
+        
+        .container-2,
+        .container-4,
+        .container-6,
+        .container-8,
+        .container-10,
+        .container-12,
+        .container-14,
+        .container-16,
+        .container-18,
+        .container-20 {
+            flex-direction: row-reverse;
+        }
+
+        .content-image {
+            width: 600px;
+            height: auto;
+            display: block; 
+            max-width: 100%; 
+        }
+
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            text-align: left; 
+        }
+
+        .number {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .censorship-algorithmic {
+            font-size: 24px;
+            color: rgb(113, 1, 1);
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .censorship-user {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .censorship-algorithmic:hover {
+            color: #ff000089;
+        }
+
+        .censorship-user:hover {
+            color: #ff000089;
+        }
+        img:hover{
+            width: 700px;
+        }
+        header {
+            background-color: transparent; 
+            color: #fff;
+            padding: 2px 8px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; 
+            box-sizing: border-box;
+        }
+
+        .logo {
+            display: flex; /* Rende gli elementi interni (immagine e testo) in linea */
+            align-items: center; /* Allinea verticalmente gli elementi al centro */
+        }
+
+        .logo-image {
+            width: 40px; /* Ridotto la dimensione del logo per schermi piccoli */
+            height: 40px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1em;
+        }
+        .link{
+            text-decoration: none;
+        }
+         .button,
+        .button *,
+        .button :after,
+        .button:before,
+        .button:after,
+        .button:before {
+        border: 0 solid;
+        box-sizing: border-box;
+        text-decoration: none;
+        }
+        .button {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-appearance: button;
+        background-color: #000;
+        background-image: none;
+        color: #fff;
+        cursor: pointer;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+            Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+            Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-size: 100%;
+        font-weight: 900;
+        line-height: 1.5;
+        margin: 0;
+        -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+        padding: 0;
+        text-transform: uppercase;
+        }
+        .button:disabled {
+        cursor: default;
+        }
+        .button:-moz-focusring {
+        outline: auto;
+        }
+        .button svg {
+        display: block;
+        vertical-align: middle;
+        }
+        .button [hidden] {
+        display: none;
+        }
+        .button {
+        border-radius: 99rem;
+        border-width: 2px;
+        padding: 0.8rem 3rem;
+        }
+        .button:hover {
+        color:#8b0000;
+        }
+
+        /* Media queries per la responsività */
+        @media (max-width: 768px) {
+            .container, .container-2,
+            .container-3, .container-4,
+            .container-5, .container-6,
+            .container-7, .container-8,
+            .container-9, .container-10,
+            .container-11, .container-12,
+            .container-13, .container-14,
+            .container-15, .container-16,
+            .container-17, .container-18,
+            .container-19, .container-20 {
+                flex-direction: column; 
+                gap: 20px;
+                padding: 20px;
+                width: 95%; 
+            }
+
+          
+            .container-2,
+            .container-4,
+            .container-6,
+            .container-8,
+            .container-10,
+            .container-12,
+            .container-14,
+            .container-16,
+            .container-18,
+            .container-20 {
+                flex-direction: column; 
+            }
+
+            .content-image {
+                width: 90%; 
+            }
+
+            .text-content {
+                text-align: center; 
+            }
+            .content-image:hover{
+                width: 100%;
+            }
+            .button{
+                padding: 10px;
+                font-size: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .number {
+                font-size: 36px; 
+            }
+
+            .censorship-algorithmic,
+            .censorship-user {
+                font-size: 18px; 
+                margin: 5px 0;
+            }
+
+            .container, .container-2,
+            .container-3, .container-4,
+            .container-5, .container-6,
+            .container-7, .container-8,
+            .container-9, .container-10,
+            .container-11, .container-12,
+            .container-13, .container-14,
+            .container-15, .container-16,
+            .container-17, .container-18,
+            .container-19, .container-20 {
+                padding: 15px;
+            }
+              .button{
+                padding: 10px;
+                font-size: 80%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+      <header>
+        <div class="logo">
+            <div class="logo-image">
+                <img src="logo.avif" alt="Logo Cleaner">
+            </div>
+            <div class="logo-text">The Cleaner Syndrome</div>
+        </div>
+        <a href="lastpage.html" class="link"><button class="button">Continue</button></a>
+    </header>
+    <div class="container">
+        <img src="censura_senza_percentuali/1.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">01</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 93%</h2>
+            <h2 class="censorship-user">User Censorship 13%</h2>
+        </div>
+    </div>
+
+    <div class="container-2">
+        <img src="censura_senza_percentuali/2.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">02</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 100%</h2>
+            <h2 class="censorship-user">User Censorship 1%</h2>
+        </div>
+    </div>
+     <div class="container-3">
+        <img src="censura_senza_percentuali/3.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">03</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 63%</h2>
+            <h2 class="censorship-user">User Censorship 2%</h2>
+        </div>
+    </div>
+
+    <div class="container-4">
+        <img src="censura_senza_percentuali/4.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">04</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 100%</h2>
+            <h2 class="censorship-user">User Censorship 3%</h2>
+        </div>
+    </div>
+    <div class="container-5">
+        <img src="censura_senza_percentuali/5.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">05</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 0%</h2>
+            <h2 class="censorship-user">User Censorship 4%</h2>
+        </div>
+    </div>
+
+    <div class="container-6">
+        <img src="censura_senza_percentuali/6.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">06</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 0%</h2>
+            <h2 class="censorship-user">User Censorship 18%</h2>
+        </div>
+    </div>
+    <div class="container-7">
+        <img src="censura_senza_percentuali/7.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">07</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 0%</h2>
+            <h2 class="censorship-user">User Censorship 4%</h2>
+        </div>
+    </div>
+
+    <div class="container-8">
+        <img src="censura_senza_percentuali/8.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">08</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 0%</h2>
+            <h2 class="censorship-user">User Censorship 7%</h2>
+        </div>
+    </div>
+    <div class="container-9">
+        <img src="censura_senza_percentuali/9.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">09</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 0%</h2>
+            <h2 class="censorship-user">User Censorship 2%</h2>
+        </div>
+    </div>
+
+    <div class="container-10">
+        <img src="censura_senza_percentuali/10.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">10</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 0%</h2>
+            <h2 class="censorship-user">User Censorship 2%</h2>
+        </div>
+    </div>
+     <div class="container-11">
+        <img src="censura_senza_percentuali/11.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">11</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 100%</h2>
+            <h2 class="censorship-user">User Censorship 6%</h2>
+        </div>
+    </div>
+
+    <div class="container-12">
+        <img src="censura_senza_percentuali/12.png" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">12</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 60%</h2>
+            <h2 class="censorship-user">User Censorship 7%</h2>
+        </div>
+    </div>
+    <div class="container-13">
+        <img src="censura_senza_percentuali/13.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">13</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 99%</h2>
+            <h2 class="censorship-user">User Censorship 26%</h2>
+        </div>
+    </div>
+
+    <div class="container-14">
+        <img src="censura_senza_percentuali/14.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">14</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 100%</h2>
+            <h2 class="censorship-user">User Censorship 6%</h2>
+        </div>
+    </div>
+    <div class="container-15">
+        <img src="censura_senza_percentuali/15.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">15</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 99%</h2>
+            <h2 class="censorship-user">User Censorship 7%</h2>
+        </div>
+    </div>
+
+    <div class="container-16">
+        <img src="censura_senza_percentuali/16.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">16</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 28%</h2>
+            <h2 class="censorship-user">User Censorship 6%</h2>
+        </div>
+    </div>
+      <div class="container-17">
+        <img src="censura_senza_percentuali/17.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">17</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 34%</h2>
+            <h2 class="censorship-user">User Censorship 13%</h2>
+        </div>
+    </div>
+
+    <div class="container-18">
+        <img src="censura_senza_percentuali/18.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">18</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 53%</h2>
+            <h2 class="censorship-user">User Censorship 12%</h2>
+        </div>
+    </div>
+     <div class="container-19">
+        <img src="censura_senza_percentuali/19.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">19</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 98%</h2>
+            <h2 class="censorship-user">User Censorship 0%</h2>
+        </div>
+    </div>
+
+    <div class="container-20">
+        <img src="censura_senza_percentuali/20.jpg" alt="Immagine di un paesaggio oscuro" class="content-image">
+        <div class="text-content">
+            <h1 class="number">20</h1>
+            <h2 class="censorship-algorithmic">Algorithmic censorship 20%</h2>
+            <h2 class="censorship-user">User Censorship 0%</h2>
+        </div>
+    </div>
+    <a href="lastpage.html" class="link"><button class="button">Continue</button></a>
+</body>
+</html>

@@ -19,7 +19,7 @@
             transition: opacity 1s ease-in-out;
             padding: 20px;
             box-sizing: border-box;
-            background-clip: url(sfondo_lastpage.mp4);
+            /* background-clip: url(sfondo_lastpage.mp4); - Questa proprietà non è corretta per un video di sfondo */
         }
 
         .logo-text {
@@ -93,25 +93,51 @@
             justify-content: center;
             flex-grow: 1;
             padding-top: 80px;
-            padding-bottom: 40px;
+            padding-bottom: 10px;
             box-sizing: border-box;
             width: 100%;
         }
 
         .main-text-container {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 0 20px;
+            margin-bottom: 10px;
+            padding: 0 10px;
             box-sizing: border-box;
             width: 100%;
             max-width: 1000px;
         }
 
         .main-text-top {
-            font-size: 2.8em;
+            font-size: 3.2em;
             font-weight: bold;
             line-height: 1.1;
             margin-bottom: 15px;
+            color: #8b0000;
+            /* Rimuovi white-space: nowrap; e overflow: hidden; */
+            /* Lascia position: relative; se vuoi il cursore allineato */
+            position: relative;
+            /* Aggiungi word-break per gestire parole lunghe su schermi piccoli */
+            word-break: break-word;
+        }
+
+        /* Wrapper per il testo che si digita e il cursore */
+        #typewriter-wrapper {
+            display: inline-block; /* Per permettere al cursore di andare a capo con il testo */
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px; /* Larghezza del cursore */
+            height: 1.1em; /* Altezza basata sull'altezza del testo */
+            background-color: #fff; /* Colore del cursore */
+            animation: blink 0.8s infinite; /* Animazione lampeggiante */
+            vertical-align: middle; /* Allinea verticalmente con il testo */
+            margin-left: 2px; /* Piccolo spazio tra testo e cursore */
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .main-text-bottom {
@@ -121,51 +147,49 @@
         }
 
         .sub-text {
-            font-size: 0.9em;
+            font-size: 1.4em;
             line-height: 1.7;
             max-width: 700px;
             text-align: left;
+            opacity: 0; /* Nascondi il sub-text inizialmente */
+            transition: opacity 1s ease 1s; /* Appare dopo il testo principale */
+        }
+
+        body.text-finished .sub-text {
+            opacity: 1;
         }
 
         /* Media Queries for Responsive Design */
-
-        /* Small screens (phones) */
         @media (max-width: 576px) {
             .main-text-top,
             .main-text-bottom {
-                font-size: 2em;
+                font-size: 2.2em; /* Ridotto ulteriormente per schermi molto piccoli */
             }
-
             .sub-text {
-                font-size: 0.8em;
-                text-align: center; /* Center sub-text on smaller screens */
+                font-size: 1.2em;
+                text-align: center;
             }
-
             .main-text-container {
-                max-width: 90%; /* Adjust max-width for smaller screens */
+                max-width: 90%;
             }
         }
 
-        /* Medium screens (tablets) */
         @media (min-width: 577px) and (max-width: 768px) {
             .main-text-top,
             .main-text-bottom {
-                font-size: 2.4em;
+                font-size: 2.8em;
             }
-
             .main-text-container {
-                max-width: 80%;
+                max-width: 90%;
             }
         }
 
-        /* Large screens (desktops) */
         @media (min-width: 769px) and (max-width: 1200px) {
             .main-text-container {
                 max-width: 70%;
             }
         }
 
-        /* Extra large screens (large desktops) */
         @media (min-width: 1201px) {
             .main-text-container {
                 max-width: 60%;
@@ -188,18 +212,48 @@
     </video>
     <div class="content-container">
         <div class="main-text-container">
-            <div class="main-text-top">Hai fatto la stessa cosa che fanno in molti,</div>
-            <div class="main-text-bottom">ma tu <span style="color: #f00;">ORA</span> ne sei consapevole.</div>
+            <div class="main-text-top">
+                <span id="typewriter-wrapper">
+                    <span id="typewriter-text"></span><span class="typing-cursor"></span>
+                </span>
+            </div>
         </div>
 
         <div class="sub-text">
-            Il <strong>Content Moderator</strong> è un operatore specializzato nella supervisione dei contenuti digitali generati dagli utenti, con il compito di assicurare che testi, immagini e video pubblicati sulle piattaforme online rispettino le normative vigenti e le policy interne in materia di sicurezza, etica e decoro. Tuttavia, l'adozione crescente di criteri di moderazione automatizzata e l'ampliamento delle definizioni di "contenuto sensibile" stanno portando alla rimozione sistematica anche di materiali perfettamente legittimi - incluse opere artistiche, contenuti culturali e immagini di nudo non pornografico - che, pur privi di elementi offensivi o lesivi, vengono censurati per eccesso di prudenza o a causa di interpretazioni algoritmiche distorte, sollevando interrogativi sostanziali sul bilanciamento tra la tutela della comunità e il rispetto del diritto alla libera espressione e alla rappresentazione del corpo umano.
+            La censura operata dall'intelligenza artificiale è una responsabilità umana, poiché le sue decisioni riflettono criteri stabiliti
+            dalle persone. Attribuire scelte morali all'AI è illusorio, dato che essa agisce senza coscienza o etica. Ogni atto di censura
+            automatizzato va quindi riconosciuto come una decisione umana, da discutere e regolare consapevolmente.
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('loaded');
+
+            const textElement = document.getElementById('typewriter-text');
+            const cursorElement = document.querySelector('.typing-cursor');
+            const subTextElement = document.querySelector('.sub-text');
+            const textToType = "AI failed the Turing’s test. And that’s okay"; // Modificato a "that's okay" per coerenza
+            let charIndex = 0;
+            const typingSpeed = 70; // Velocità di digitazione in millisecondi per ogni carattere
+
+            function typeWriter() {
+                if (charIndex < textToType.length) {
+                    textElement.textContent += textToType.charAt(charIndex);
+                    charIndex++;
+                    // Continua la digitazione dopo un breve ritardo
+                    setTimeout(typeWriter, typingSpeed);
+                } else {
+                    // Una volta che il testo è completo, nascondi il cursore
+                    if (cursorElement) {
+                        cursorElement.style.display = 'none';
+                    }
+                    document.body.classList.add('text-finished');
+                }
+            }
+
+            // Avvia l'effetto di digitazione
+            typeWriter();
         });
     </script>
 </body>
