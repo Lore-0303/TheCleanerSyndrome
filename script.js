@@ -42,7 +42,7 @@ function altrapagina() {
 }
 
 function gestisciClickTieni() {
-    if (indice < immagini.length) {
+    if (indice < immagini_risultato.length) {
         if (!primaSceltaFatta && indice === 0) {
             immaginiTenute.push(immagini_risultato[indice]);
             primaSceltaFatta = true;
@@ -62,7 +62,7 @@ function gestisciClickTieni() {
 }
 
 function gestisciClickOscura() {
-    if (indice < immagini.length) {
+    if (indice < immagini_risultato.length) {
         if (!primaSceltaFatta && indice === 0) {
             immaginiOscurate.push(immagini_risultato[indice]);
             primaSceltaFatta = true;
@@ -88,7 +88,7 @@ function verificaFineImmagini() {
 }
 
 
-if (immagini.length > 0) {
+if (immagini_risultato.length > 0) {
     imageElement.src = immagini_risultato[indice];
 }
 
