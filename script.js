@@ -4,29 +4,6 @@ let tieni = document.getElementById('tieni');
 let oscura = document.getElementById('oscura');
 let imageElement = imageContainer.querySelector('img');
 
-let immagini = [
-    'foto/1.jpg',
-    'foto/2.jpg',
-    'foto/3.jpg',
-    'foto/4.jpg',
-    'foto/5.jpg',
-    'foto/6.jpg',
-    'foto/7.jpg',
-    'foto/8.jpg',
-    'foto/9.jpg',
-    'foto/10.jpg',
-    'foto/11.jpg',
-    'foto/12.jpg',
-    'foto/13.jpg',
-    'foto/14.jpg',
-    'foto/15.jpg',
-    'foto/16.jpg',
-    'foto/17.jpg',
-    'foto/18.jpg',
-    'foto/19.jpg',
-    'foto/20.jpg'
-];
-// vettore con le immagini con le percentuali
 let immagini_risultato = [
     'censura_senza_percentuali/1.jpg',
     'censura_senza_percentuali/2.jpg',
