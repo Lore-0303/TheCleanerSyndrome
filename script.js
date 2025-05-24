@@ -26,6 +26,7 @@ let immagini = [
     'foto/19.jpg',
     'foto/20.jpg'
 ];
+// vettore con le immagini con le percentuali
 let immagini_risultato = [
     'censura_senza_percentuali/1.jpg',
     'censura_senza_percentuali/2.jpg',
@@ -48,6 +49,7 @@ let immagini_risultato = [
     'censura_senza_percentuali/19.jpg',
     'censura_senza_percentuali/20.jpg'
 ]
+// vettore con le immagini senza percentuali
 
 let immaginiTenute = [];
 let immaginiOscurate = [];
@@ -65,11 +67,11 @@ function altrapagina() {
 function gestisciClickTieni() {
     if (indice < immagini.length) {
         if (!primaSceltaFatta && indice === 0) {
-            immaginiTenute.push(immagini[indice]);
+            immaginiTenute.push(immagini_risultato[indice]);
             primaSceltaFatta = true;
             indice++;
         } else if (primaSceltaFatta) {
-            immaginiTenute.push(immagini[indice]);
+            immaginiTenute.push(immagini_risultato[indice]);
             indice++;
         }
         if (indice < immagini_risultato.length) {
@@ -85,11 +87,11 @@ function gestisciClickTieni() {
 function gestisciClickOscura() {
     if (indice < immagini.length) {
         if (!primaSceltaFatta && indice === 0) {
-            immaginiOscurate.push(immagini[indice]);
+            immaginiOscurate.push(immagini_risultato[indice]);
             primaSceltaFatta = true;
             indice++;
         } else if (primaSceltaFatta) {
-            immaginiOscurate.push(immagini[indice]);
+            immaginiOscurate.push(immagini_risultato[indice]);
             indice++;
         }
         if (indice < immagini_risultato.length) {
